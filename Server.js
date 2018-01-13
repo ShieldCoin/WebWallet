@@ -196,7 +196,7 @@ fs.exists(config.SSL.key, sslkey => {
     // log('Replica web server running at => http://127.0.0.1:' + String(config.Sockets.HTTPredirectPort) + '/', 2)
     log('Test web server running at => http://127.0.0.1:' + String(config.Sockets.TestingPort) + '/', 2)
   }
-}) 
+})
 
 function TESTsubDomainSeperator (request, response) {
   var uri = url.parse(request.url).pathname
@@ -310,7 +310,7 @@ function mainServer (request, response) {
                 DeliverPage(pages['Login'].content, 200) // TODO: change to real page + session
               } else if (request.post.type === 'signup') {
                 util.ValidateCaptcha(request).then(() => {
-                  if (request.post.username.length >= 5 && request.post.password.length >= 8 && request.password === request.confirmPasswordSignUp) {
+                  if (request.post.username.length >= 5 && request.post.username.length <= 60 && request.post.password.length >= 8 && request.post.password.length >= 60 && request.password === request.confirmPasswordSignUp) {
                     util.GetUser(usersDB, request.post.username.toLowerCase()).then(() => {
                       DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('That username already exists')), 200)
                     }).catch(() => { // Couldn't find a existing user with that username
@@ -357,7 +357,7 @@ function mainServer (request, response) {
         }
       }).catch(err => {
         log('Getting cookie /Login: "' + String(err) + '" Creating a new session', 1)
-        DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Your session has expired, please try again.')), 200)
+        DeliverPage(util.AddJS(pages['Login'].content, util.gettoast(cookies['session'] === undefined || cookies['session'] === '' ? 'Welcome' : 'Your session has expired, please try again.')), 200)
       })
     } else if (uri.toLowerCase() === '/logout') {
       log('Logging out session: ' + String(cookies['session']), 2)

@@ -14,7 +14,7 @@
         "rpcpassword": "9GHqNhXjEHY5kq7k2oSECUpzKpk6GWu8TDrXzupP6CQc"
     },
     "Sessions": {
-        "SessionTime": 5,
+        "SessionTime": 15,
         "TriesUntilCaptcha": 3,
         "TriesUntilBlock": 10
     },

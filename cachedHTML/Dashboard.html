@@ -95,10 +95,10 @@
             <a href="#transactions">Transactions</a>
           </li>
           <li class="tab col s1 l3">
-            <a href="#send-xsh">Send XSH</a>
+            <a href="#send-xsh">Send/Receive</a>
           </li>
           <li class="tab col s1 l3">
-            <a href="#options">Options</a>
+            <a href="#options">Account</a>
           </li>
         </ul>
       </div>
@@ -165,9 +165,9 @@
             <h2 class="center blue-grey-text text-lighten-2">
               <i class="material-icons">wrap_text</i>
             </h2>
-            <h5 class="center">Transactions list</h5>
+            <h5 class="center">Transactions</h5>
             <p class="center">
-              Built in transactions list. For when you don't know when you did this
+              Browse your wallet's transaction history.
             </p>
           </div>
         </div>
@@ -178,10 +178,9 @@
             <h1 class="center blue-grey-text text-lighten-2">
               <i class="material-icons">send</i>
             </h1>
-            <h5 class="center">Create transactions</h5>
+            <h5 class="center">Send/Receive XSHs</h5>
             <p class="center">
-              You can even securely send XSH to other people. They don't need to have a webwallet necesarely. But they still need to have
-              some sort of Shield wallet
+              Send and receive XSH securely to/from other SHIELD wallets - web wallet or not.
             </p>
 
           </div>
@@ -192,9 +191,9 @@
             <h2 class="center blue-grey-text text-lighten-1">
               <i class="material-icons">settings</i>
             </h2>
-            <h5 class="center">User settings</h5>
+            <h5 class="center">Account</h5>
             <p class="center">
-              Every piece of thingys
+              Account-related information.
             </p>
           </div>
         </div>
@@ -303,7 +302,7 @@
           </div>
           <div class="row">
             <div class="input-field col s10">
-              <input id="sendamount" type="number" name="sendamount" required="" class="validate" min="0.02" step="0.5">
+              <input id="sendamount" type="number" name="sendamount" required="" class="validate" min="1" step="0.5">
               <label for="sendamount" data-error="Please fill in a valid value" data-success="Seems OK">Amount</label>
             </div>
           </div>
@@ -431,6 +430,9 @@
       var address = document.getElementById("sendaddr").value;
       var value = document.getElementById("sendamount").value;
       $.getJSON("/api/send/" + getCookie("session") + "/" + String(address) + "/" + String(value) + "/", function (data) {
+        if (last["getbalance"].Content < value){
+          Materialize.toast("Not enough balance", 4000);
+        }
         console.log(data);
         if (data.StatusCode === 200) {
           Materialize.toast("XSH is being send, please wait 2 minutes for the transaction", 4000);
@@ -448,6 +450,9 @@
         console.log(data);
         if(last["getaddresses"] && JSON.stringify(data) === JSON.stringify(last["getaddresses"]))
           return
+
+        if (data.Content === "Couldn't find session")
+          window.location = "/Login";
         $('ul.addresses-list').empty();
         if (data.StatusCode === 200) {
           let transactions = data.Content;
@@ -473,6 +478,8 @@
         console.log(data);
         if(last["getbalance"] && JSON.stringify(data) === JSON.stringify(last["getbalance"]))
           return
+        if (data.Content === "Couldn't find session")
+          window.location = "/Login";
         if (data.StatusCode === 200) {
           document.getElementById("balancetext").innerHTML = Number(data.Content).toFixed(6) + "<br> XSH";
           document.getElementById("littleCurrencyLarge").innerHTML = Number(data.Content).toFixed(6) + " XSH";
@@ -488,6 +495,8 @@
         console.log(JSON.stringify(last["gettransactions"]))
         if(last["gettransactions"] && JSON.stringify(data) ===  JSON.stringify(last["gettransactions"]))
           return
+        if (data.Content === "Couldn't find session")
+          window.location = "/Login";
         $('ul.transaction-list').empty();
         if (data.StatusCode === 200) {
           let transactions = data.Content.reverse();
