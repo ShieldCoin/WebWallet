@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <style>
+    .icon-block {
+      padding: 0 15px;
+    }
+
+    .icon-block .material-icons {
+      font-size: inherit;
+    }
+
+    .fixed-action-btn {
+      top: 70%;
+    }
+
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    .adress-item{font-size: 1.2vw;}
+    @media (max-width: 1920px) {
+        .adress-item{font-size: 0.8vw;}
+    }
+
+    @media (max-width: 800px) {
+        .adress-item{font-size: 2vw;}
+    }
+    @media (max-width: 480px) {
+      .adress-item{font-size: 3vw;}
+    }
+
+    pre {
+      font-family: "Courier 10 Pitch", Courier, monospace;
+      font-size: 95%;
+      line-height: 140%;
+      white-space: pre;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -o-pre-wrap;
+  }       
+  
+  code {
+      font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+      font-size: 95%;
+      line-height: 140%;
+      white-space: pre;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -o-pre-wrap;
+      background: #faf8f0;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      width: auto;
+  }
+  
+  #content code {
+      display: block;
+      padding: 0.5em 1em;
+      border: 1px solid #bebab0;
+  }
+    /* html {
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+      } */
+  </style>
+</head>
+
+<body id="wholeBody">
+  <nav class="nav-extended blue-grey col s12" role="navigation">
+    <div class="nav-wrapper container">
+
+
+
+      <div class="right hide-on-small-only">
+        <ul class="tabs tabs-transparent" id="tabs">
+          <li class="tab col s1 l3">
+            <a href="#mainpage">Main Page</a>
+          </li>
+          <li class="tab col s1 l3">
+            <a href="#transactions">Transactions</a>
+          </li>
+          <li class="tab col s1 l3">
+            <a href="#send-xsh">Send XSH</a>
+          </li>
+          <li class="tab col s1 l3">
+            <a href="#options">Options</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="left">
+        <ul class="tabs tabs-transparent hide-on-med-and-up" id="tabs">
+          <li class="tab col s1 l3">
+            <a href="#mainpage" class="active">
+              <i class="material-icons">home</i>
+            </a>
+          </li>
+          <li class="tab col s1 l3">
+            <a href="#transactions">
+              <i class="material-icons">wrap_text</i>
+            </a>
+          </li>
+          <li class="tab col s1 l3">
+            <a href="#send-xsh">
+              <i class="material-icons">send</i>
+            </a>
+          </li>
+          <li class="tab col s1 l3">
+            <a href="#options">
+              <i class="material-icons">settings</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="right hide-on-med-and-up">
+         <!--I Fucking love this little Fucker-->
+        <p class="yellow-text text-darken-3 scale-transition scale-out" id="littleCurrencySmall">5.000.000 xsh</p>
+      </div>
+      <div class="left hide-on-small-only col s4">
+         <!--But I don't know if I like this-->
+        <h4 class="yellow-text text-darken-3 scale-transition scale-out" id="littleCurrencyLarge">5.000.000 XSH</h4>
+      </div>
+
+  </nav>
+  <div class="container" id="mainpage">
+    <div class="section no-pad-bot" id="index-banner">
+
+      <div class="container" id="testSwipe">
+        <div class="card-panel">
+          <div class="row">
+            <div class="col s2">
+              <img class="responsive-img" src="images/shieldLogo.png">
+            </div>
+            <div class="col s8">
+              <h1 id="balancetext" class="yellow-text text-darken-3 responsive-img" style="font-size: 250%;">1,000,000
+                <br>XSH</h1>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-grey-text text-lighten-2">
+              <i class="material-icons">wrap_text</i>
+            </h2>
+            <h5 class="center">Transactions list</h5>
+            <p class="center">
+              Built in transactions list. For when you don't know when you did this
+            </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+
+          <div class="icon-block">
+            <h1 class="center blue-grey-text text-lighten-2">
+              <i class="material-icons">send</i>
+            </h1>
+            <h5 class="center">Create transactions</h5>
+            <p class="center">
+              You can even securely send XSH to other people. They don't need to have a webwallet necesarely. But they still need to have
+              some sort of Shield wallet
+            </p>
+
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-grey-text text-lighten-1">
+              <i class="material-icons">settings</i>
+            </h2>
+            <h5 class="center">User settings</h5>
+            <p class="center">
+              Every piece of thingys
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+  </div>
+
+  <div class="container" id="transactions">
+    <div class="section">
+      <ul class="collapsible popout transaction-list" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">
+            <div class="col s3 push-s4">
+              <i class="material-icons red-text">call_made</i>
+            </div>
+            <div class="col s3 red-text">1.000 XSH</div>
+          </div>
+
+          <div class="collapsible-body">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Receiver</th>
+                  <th>Amount</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Alvin</td>
+                  <td>Eclair</td>
+                  <td>$0.87</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header green-text">
+            <i class="material-icons">call_received</i>600 XSH</div>
+          <div class="collapsible-body">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Receiver</th>
+                  <th>Amount</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Alvin</td>
+                  <td>Eclair</td>
+                  <td>$0.87</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+
+        <li>
+          <div class="collapsible-header green-text">
+            <i class="material-icons">call_received</i>700 XSH</div>
+          <div class="collapsible-body">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Receiver</th>
+                  <th>Amount</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SdSqX8F6y3GTCb8KsPf2iyJu6hRnvUbm8y</td>
+                  <td>300 XSH</td>
+                  <td>13/01/2018</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+
+      </ul>
+      <button class="btn waves-effect waves-light" onclick="window.location = 'https://altmix.org/coins/2-SHIELD'">Block Explorer
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="container" id="send-xsh">
+    <div class="section">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Send XSH</span>
+          <div class="row">
+            <div class="input-field col s8">
+              <input placeholder="Address" name="sendaddr" id="sendaddr" type="text" required="" class="validate" minlength="34" maxlength="34">
+              <label for="sendaddr" data-error="Fill in a address" data-success="Seems legit">Address</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s10">
+              <input id="sendamount" type="number" name="sendamount" required="" class="validate" min="0.02" step="0.5">
+              <label for="sendamount" data-error="Please fill in a valid value" data-success="Seems OK">Amount</label>
+            </div>
+          </div>
+          <blockquote><i>Note: this doesn't include the tx fee of 0.05 XSH</i></blockquote>
+          <button class="btn waves-effect waves-light darken-1" type="submit" name="action" onclick="SendForm()">
+            Send
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+
+      <ul class="collapsible popout addresses-list" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <div class="col s3 push-s4">
+                <i class="material-icons green-text">account_balance_wallet</i>
+              </div>
+              <div class="col s3 green-text">1.000 XSH</div>
+            </div>
+  
+            <div class="collapsible-body">
+              <div class="col s4">
+                Addres
+              </div>
+            </div>
+          </li>
+        </ul>
+        <button class="btn waves-effect waves-light" onclick="GetNewAddress()">Add Address
+          <i class="material-icons right">account_balance_wallet</i>
+        </button>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <div class="container" id="options">
+    <div class="section">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Your information</span>
+          <p>Username :
+            <i id="userName">usrn</i>
+          </p>
+          <p>DisplayName :
+            <i id="displayName">displ</i>
+          </p>
+          <p>Password :
+            <i>*********</i>
+          </p>
+        </div>
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Actions</span>
+              <button class="btn waves-effect waves-light" onclick="window.location = '/Logout'">Logout
+                  <i class="material-icons right">exit_to_app</i>
+                </button>
+            </div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <footer class="page-footer blue-grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Shield</h5>
+          <p class="grey-text text-lighten-4"></p>
+
+
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Supported by
+        <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        <br /> Copyright © SHIELD 2018
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script>
+
+    var info = {
+      userName: "{ERROR}",
+      displayName: "{ERROR}"
+    };
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    //EXTRAJS//
+
+    function GetNewAddress(){
+      $.getJSON("/api/addaddress/" + getCookie("session") + "/", function (data) {
+        if (data.StatusCode === 200) {
+          Materialize.toast("Creating new address, please wait 2 minutes", 4000);
+        }else{
+          Materialize.toast("Couldn't create address (max 10)", 4000);
+        }
+      })
+    }
+
+    function SendForm(){
+      var address = document.getElementById("sendaddr").value;
+      var value = document.getElementById("sendamount").value;
+      $.getJSON("/api/send/" + getCookie("session") + "/" + String(address) + "/" + String(value) + "/", function (data) {
+        console.log(data);
+        if (data.StatusCode === 200) {
+          Materialize.toast("XSH is being send, please wait 2 minutes for the transaction", 4000);
+        }else{
+          Materialize.toast(data.Content, 4000);
+        }
+      })
+
+    }
+
+    var last = {}
+
+    function Update() {
+      $.getJSON("/api/getaddresses/" + getCookie("session") + "/", function (data) {
+        console.log(data);
+        if(last["getaddresses"] && JSON.stringify(data) === JSON.stringify(last["getaddresses"]))
+          return
+        $('ul.addresses-list').empty();
+        if (data.StatusCode === 200) {
+          let transactions = data.Content;
+          transactions.forEach(element => {
+            var template = '<li><div class="collapsible-header"><div class="col s3 push-s4"><i class="material-icons green-text">account_balance_wallet</i></div><div class="col s3 green-text adress-item">Address</div></div></li>'
+            //var template = '<li> <div class="collapsible-header"><div class="col s3 push-s4"> <i class="material-icons red-text">call_made</i> </div> <div class="col s3 red-text">{Amount} XSH</div> </div> <div class="collapsible-body"> <div class="col s4"> Addres </div> </div> </li>';
+            template = template.replace("Address", element)
+            $("ul.addresses-list").append(template)
+          })
+        } else {
+          Materialize.toast(data.Content, 4000);
+        }
+        if (!data.Content.length) {
+          $('ul.addresses-list').empty();
+          var template = '<li><div class="collapsible-header"><div class="col s3 push-s4"><i class="material-icons green-text">account_balance_wallet</i></div><div class="col s3 green-text adress-item">Address</div></div></li>'
+          template = template.replace("Address", "No addresses yet");
+          $("ul.addresses-list").append(template)
+        }
+        last["getaddresses"] = data;
+      });
+
+      $.getJSON("/api/getbalance/" + getCookie("session") + "/", function (data) {
+        console.log(data);
+        if(last["getbalance"] && JSON.stringify(data) === JSON.stringify(last["getbalance"]))
+          return
+        if (data.StatusCode === 200) {
+          document.getElementById("balancetext").innerHTML = Number(data.Content).toFixed(6) + "<br> XSH";
+          document.getElementById("littleCurrencyLarge").innerHTML = Number(data.Content).toFixed(6) + " XSH";
+          document.getElementById("littleCurrencySmall").innerHTML = Number(data.Content).toFixed(6) + " XSH";
+        } else {
+          Materialize.toast(data.Content, 4000);
+        }
+        last["getbalance"] = data;
+      });
+      $.getJSON("/api/gettransactions/" + getCookie("session") + "/", function (data) {
+        console.log(data);
+        console.log(JSON.stringify(data))
+        console.log(JSON.stringify(last["gettransactions"]))
+        if(last["gettransactions"] && JSON.stringify(data) ===  JSON.stringify(last["gettransactions"]))
+          return
+        $('ul.transaction-list').empty();
+        if (data.StatusCode === 200) {
+          let transactions = data.Content.reverse();
+          transactions.forEach(element => {
+            var template = '<li><div class="collapsible-header"><div class="col s3 push-s4"><i class="material-icons red-text">call_made</i></div><div class="col s3 red-text">{Amount} XSH</div></div><div class="collapsible-body"><div class="col s4" id="content"><code>address</code></div></div></li>'
+            //var template = '<li> <div class="collapsible-header"><div class="col s3 push-s4"> <i class="material-icons red-text">call_made</i> </div> <div class="col s3 red-text">{Amount} XSH</div> </div> <div class="collapsible-body"> <div class="col s4"> Addres </div> </div> </li>';
+            template = template.replace("address", JSON.stringify(element, undefined, 2))
+              .replace("{Amount}", element.amount).replace("red", element.amount > 0 ? "green" : "red").replace("call_made", element.amount > 0 ? "call_received" : "call_made")
+            $("ul.transaction-list").append(template)
+          })
+        } else {
+          Materialize.toast(data.Content, 4000);
+        }
+        if (!data.Content.length) {
+          $('ul.transaction-list').empty();
+          var template = '<li><div class="collapsible-header"><div class="col s3 push-s4"><i class="material-icons red-text">call_made</i></div><div class="col s3 red-text">{Amount} XSH</div></div><div class="collapsible-body"><div class="col s4">address</div></div></li>'
+          template = template.replace("address", "Check again later").replace("{Amount} XSH", "No transactions yet");
+          $("ul.transaction-list").append(template)
+        }
+        last["gettransactions"] = data;
+      });
+    }
+    Update();
+    setInterval(Update, 120000);
+
+    document.getElementById("displayName").innerHTML = info['displayName'];
+    document.getElementById("userName").innerHTML = info['userName'];
+
+
+
+
+
+
+
+
+    // SOURCE: http://www.javascriptkit.com/javatutors/touchevents2.shtml //
+    // Not mine but it works :) //
+    function swipedetect(el, callback) {
+      var touchsurface = el,
+        swipedir,
+        startX,
+        startY,
+        distX,
+        distY,
+        threshold = 150, //required min distance traveled to be considered swipe
+        restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+        allowedTime = 300, // maximum time allowed to travel that distance
+        elapsedTime,
+        startTime,
+        handleswipe = callback || function (swipedir) { }
+
+      touchsurface.addEventListener('touchstart', function (e) {
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        //e.preventDefault()
+      }, false)
+
+      touchsurface.addEventListener('touchmove', function (e) {
+        //e.preventDefault() // prevent scrolling when inside DIV
+      }, false)
+
+      touchsurface.addEventListener('touchend', function (e) {
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime) { // first condition for awipe met
+          if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) { // 2nd condition for horizontal swipe met
+            swipedir = (distX < 0) ? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+          }
+          else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) { // 2nd condition for vertical swipe met
+            swipedir = (distY < 0) ? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+          }
+        }
+        handleswipe(swipedir)
+        //e.preventDefault()
+      }, false)
+    }
+
+
+    $(document).ready(function () {
+      $("ul.tabs").tabs({
+        onShow: function (page) {
+          console.log(page.selector)
+          if (page.selector != '#mainpage') {
+            document.getElementById('littleCurrencySmall').className = 'yellow-text text-darken-3 scale-transition'
+            document.getElementById('littleCurrencyLarge').className = 'yellow-text text-darken-3 scale-transition'
+          } else {
+            document.getElementById('littleCurrencySmall').className = 'yellow-text text-darken-3 scale-transition scale-out'
+            document.getElementById('littleCurrencyLarge').className = 'yellow-text text-darken-3 scale-transition scale-out'
+          }
+        }
+      })
+    })
+
+    // I made dis //
+    window.addEventListener('load', function () {
+      var pages = []
+      pages[0] = 'mainpage' // ID for Home Page
+      pages[1] = 'transactions'
+      pages[2] = 'send-xsh'
+      pages[3] = 'options'
+      currentPage = 0
+      var el = document.getElementById('wholeBody')
+      swipedetect(el, function (swipedir) {
+        if (swipedir == 'left') {
+          if (currentPage + 1 >= pages.length) currentPage = -1
+          $('ul.tabs').tabs('select_tab', pages[currentPage + 1]);
+          currentPage++
+        } else if (swipedir == 'right') {
+          if (currentPage - 1 < 0) currentPage = pages.length
+          $('ul.tabs').tabs('select_tab', pages[currentPage - 1]);
+          currentPage--
+
+        }
+      })
+    }, false)
+  </script>
+
+
+</body>
+
+</html>

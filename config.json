@@ -1,0 +1,39 @@
+{
+    "Notes": "API: 0 = none, 1 = default, 2-inf = custom\n test_Price only goes for altcoins",
+    "Testing": true,
+    "FQDN": "localhost",
+    "APISubDomain": "api",
+    "Sockets": {
+        "TestingPort": 8089,
+        "SSLPort": 443,
+        "HTTPredirectPort": 8082
+    },
+    "XSH": {
+        "walletpassphrase": "5i3IG5vLjp4a",
+        "encrypted": true,
+        "RPCPort": 20103,
+        "rpcuser": "bitcoinrpc",
+        "rpcpassword": "9GHqNhXjEHY5kq7k2oSECUpzKpk6GWu8TDrXzupP6CQc"
+    },
+    "Sessions": {
+        "SessionTime": 5,
+        "TriesUntilCaptcha": 3,
+        "TriesUntilBlock": 10
+    },
+    "PassReq": {
+        "Length": 15,
+        "Mask": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!$*",
+        "SALTA": "V@$98nyVRQWwn9y8",
+        "SALTB": "VW(B)v1b9A9wi74p"
+    },
+    "reCaptcha": {
+        "enable": true,
+        "SiteKey": "6Lc9EjwUAAAAANfjQw3Oe9DqscD3o_Axs2vN7c5a",
+        "SecretKey": "6Lc9EjwUAAAAAK14Sbj3RO2bsWJ0ZEWRqeiognK_"
+    },
+    "SSL": {
+        "key": "/root/Certificates/privkey.pem",
+        "cert": "/root/Certificates/fullchain.pem",
+        "ca": "/root/Certificates/chain.pem"
+    }
+}

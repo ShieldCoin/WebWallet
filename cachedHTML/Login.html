@@ -1,0 +1,233 @@
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .options {
+            margin-top: 15rem;
+            position: relative;
+        }
+
+        .card-panel {
+            position: relative;
+            height: 25rem;
+            width: 100%;
+        }
+
+        .block {
+            display: block !important;
+        }
+
+        .tabs-vertical .tabs {
+            height: auto;
+            -ms-flex-direction: column;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        .tabs-vertical .tab {
+            width: 100%;
+        }
+
+        .tabs-vertical .tab .active {
+            -moz-transition: border-color .5s ease;
+            -o-transition: border-color .5s ease;
+            -webkit-transition: border-color .5s ease;
+            transition: border-color .5s ease;
+            border-right: 3px solid #424242;
+        }
+
+        .tabs-vertical .tab :hover {
+            border-right: 3px solid #eeeeee;          
+        }
+
+        .tabs-vertical .indicator {
+            display: none;
+        }
+
+        .tab:not(.disabled) :hover{
+            color: #ff0000 !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container teal z-depth-3 col s12 m6 l3">
+        <div class="row">
+            <div class="tabs-vertical options z-depth-4">
+                <div class="card-panel" >
+                    <div class="col s4 m4 l2">
+                        <ul class="tabs">
+                            <li class="tab">
+                                <a class="active" href="#Login">Login</a>
+                            </li>
+                            <li class="tab disabled">
+                                <a href="#Priv">Coming Soon</a>
+                            </li>
+                            <li class="tab">
+                                <a href="#Signup">Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col s8 m8 l6">
+                        <div id="Login" class="tab-content">
+                            <form class="col s12" action="/Login" method="post" target="_self">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="Username" name="username" id="username" type="text" class="validate">
+                                        <label for="username">Username</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="password" type="password" name="password" class="validate">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                                <!-- Extra Captcha -->
+                                <input type="hidden" name="token" value="TOKEN">
+                                <input type="hidden" name="type" value="login">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </form>
+                        </div>
+                        <div id="Priv" class="tab-content">
+                            <div class="row">
+                                <form class="col s12" action="/Login" method="post" target="_self">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea name="privatekey" id="privatekey" class="materialize-textarea"></textarea>
+                                            <label for="privatekey">Private Key</label>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="token" value="TOKEN">
+                                    <input type="hidden" name="type" value="privkey">
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="Signup" class="tab-content">
+                            <form class="col s12" action="/Login" method="post" target="_self">
+
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="and Username" name="displayname" id="displaynameSignUpValue" type="text" class="validate" minlength="4" maxlength="64">
+                                        <label for="displayName" id="displaynameSignUpLabel" data-error="Your Display name must be atleast 4 long" data-success="Username">Full Name</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input placeholder="Password" name="password" id="passwordSignUp" type="password" required="" class="validate" minlength="8"
+                                            maxlength="64">
+                                        <label for="passwordSignUp" data-error="Password must be at least 8 characters long" data-success="Seems legit">Password</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input placeholder="Confirm Password" name="confirmPasswordSignUp" id="confirmPasswordSignUp" type="password" style="margin: 0 0 4px 0;">
+                                        <label for="confirmPasswordSignUp">Re-type Password</label>
+                                        <sub style="COLOR: #4CAF50" id="confirmationPasswordSignUp"></sub>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Extra Post Info -->
+                                    <input type="hidden" id="usernameSignUpValue" name="username" value="" />   <!-- Display name   -->
+
+                                    <input type="hidden" name="type" value="signup" />    <!-- Post type      -->
+                                    <input type="hidden" name="token" value="TOKEN" />    <!-- TOKEN??        -->
+                                    <div class="row" style="margin: 0 0 40px 0;">
+                                        {CAPTCHA}
+                                    </div>
+                                    <button class="btn waves-effect waves-light" id="signUpSubmit" type="submit" name="action" disabled>Sign Up
+                                    <i class="material-icons right">send</i>
+                                    </button>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            // Everytime key is released check the sign up function
+            $("#passwordSignUp, #confirmPasswordSignUp, #displaynameSignUpValue").keyup(checkSignupInfo);
+        });
+        function checkSignupInfo() {
+            var criteria = 0; // Criteria check reset everytime
+            totalCriteria = 2; // Total Criteria it has to have to submit
+
+            // Check if the Password has the criteria of 8 or higher (Extra Check)
+            // TODO: Maybe add some patterns or shit
+            if ($("#confirmPasswordSignUp").val().length > 7 && $("#passwordSignUp").val().length > 7) {
+
+                // Check if password and re-type password is the same
+                if ($("#passwordSignUp").val() != $("#confirmPasswordSignUp").val()) { // High likely it doesn't when this happens
+                    console.log(document.getElementById("confirmPasswordSignUp").style.property)
+                    $("#confirmationPasswordSignUp").html("Passwords do not match!")
+                    document.getElementById("confirmationPasswordSignUp").setAttribute("style", 'COLOR: rgb(244, 67, 54); font-family: "Roboto", sans-serif;');
+                    document.getElementById("confirmPasswordSignUp").setAttribute("style", "box-shadow: 0 1px 0 0 rgb(244, 67, 54); border-bottom: 1px solid rgb(244, 67, 54); margin: 0 0 5px 0;");
+                }
+                else // It seems to have been correctly re-typed
+                {
+                    $("#confirmationPasswordSignUp").html("Passwords match"); //rgb(76, 175, 80)
+                    document.getElementById("confirmationPasswordSignUp").setAttribute("style", 'COLOR: #4CAF50; font-family: "Roboto", sans-serif;');
+                    document.getElementById("confirmPasswordSignUp").setAttribute("style", "box-shadow: 0 1px 0 0 rgb(76, 175, 80); border-bottom: 1px solid rgb(76, 175, 80); margin: 0 0 5px 0;");
+                    criteria++; // Criteria check is OK
+                }
+            }
+
+            // Does the "Full Name" meet the criteria
+            // TODO: Maybe different username options
+            // TODO: Maybe check the database?? (HARD)
+                // Display the username that will be used
+                document.getElementById("displaynameSignUpLabel").setAttribute("data-success", "Userame will be: " + $("#displaynameSignUpValue").val().toLowerCase().split(' ').join('_'));
+                // Set the actual value in the extra info tab for __post action
+                document.getElementById("usernameSignUpValue").setAttribute("value",  $("#displaynameSignUpValue").val().toLowerCase().split(' ').join('_'));
+            if ($("#displaynameSignUpValue").val().length > 4) {
+                criteria++; // Criteria check is OK
+            }
+
+            // Button activate or nah??
+            if (criteria >= totalCriteria) { document.getElementById("signUpSubmit").disabled = false; }
+            // Nah
+            else { document.getElementById("signUpSubmit").disabled = true; }
+        }
+
+        (function ($) { // ??
+            $(function () { // ??
+
+                $('.button-collapse').sideNav(); // ??
+                $('.parallax').parallax(); // ??
+                $('.card-tabs .tabs').tabs({ // ??...
+                    'swipeable': true
+                });
+                $('.carousel.carousel-slider').carousel({
+                    fullWidth: true
+                });
+                //EXTRAJS//
+            }); // end of document ready
+        })(jQuery); // end of jQuery name space
+    </script>
+
+</body>
+
+</html>
