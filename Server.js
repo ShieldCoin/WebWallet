@@ -267,6 +267,7 @@ function mainServer (request, response) {
     if (CheckIP(ipadress)) return
     if (uri === '/') {
       util.Redirect(response, '/Login', {})
+      return
     }
     if (uri.replace('.html', '').toLowerCase() === '/login') {
       util.getSession(sessionsDB, cookies['session']).then(resp => {
