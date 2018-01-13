@@ -214,8 +214,7 @@ function mainServer (request, response) {
   // Default variable initialization
   var uri = url.parse(request.url).pathname
   var cookies = util.parseCookies(request)
-  var ipadress = request.headers['x-forwarded-for'] ||
-    request.connection.remoteAddress ||
+  var ipadress = request.connection.remoteAddress ||
     request.socket.remoteAddress ||
     (request.connection.socket ? request.connection.socket.remoteAddress : null)
   var Head = {}
@@ -464,8 +463,7 @@ function mainServer (request, response) {
 }
 
 function apiServer (request, response) {
-  var ipadress = request.headers['x-forwarded-for'] ||
-  request.connection.remoteAddress ||
+  var ipadress = request.connection.remoteAddress ||
   request.socket.remoteAddress ||
   (request.connection.socket ? request.connection.socket.remoteAddress : null)
   if (CheckIP(ipadress)) return
@@ -474,7 +472,7 @@ function apiServer (request, response) {
   // console.log(uri.toLowerCase().split('/'), args)
   if (uri.toLowerCase().split('/')[2] === 'send') { // /api/send/<session>/<address>/<amount>
     util.CheckSessionUser(sessionsDB, usersDB, args[0]).then(x => {
-      if (util.CheckStrNumber(args[2], 0.1)) { // TODO: max as real balance
+      if (util.CheckStrNumber(args[2], 1)) { // TODO: max as real balance
         shield.exec('getbalance', x[0].username, function (err, balance) {
           if (err) {
             log(String(err), 3)
