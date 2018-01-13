@@ -184,7 +184,7 @@ function SSLoptions () {
 
 fs.exists(config.SSL.key, sslkey => {
   if (sslkey && !config.Testing) {
-    https.createServer(SSLoptions(), subDomainSeperator).listen(config.Sockets.SSLPort)
+    https.createServer(SSLoptions(), TESTsubDomainSeperator).listen(config.Sockets.SSLPort)
     http.createServer((request, response) => { // Redirect http requests
       response.writeHead(301, { Location: 'https://' + config.FQDN + String(url.parse(request.url).pathname) })
       response.end()
@@ -192,22 +192,12 @@ fs.exists(config.SSL.key, sslkey => {
     log('Web server running at => https://127.0.0.1:443/', 2)
     log('Redirect server running at => http://127.0.0.1:80/', 2)
   } else {
-    http.createServer(TESTsubDomainSeperator).listen(config.Sockets.HTTPredirectPort)
-    log('Replica web server running at => http://127.0.0.1:' + String(config.Sockets.HTTPredirectPort) + '/', 2)
+    http.createServer(TESTsubDomainSeperator).listen(config.Sockets.TestingPort)
+    // log('Replica web server running at => http://127.0.0.1:' + String(config.Sockets.HTTPredirectPort) + '/', 2)
     log('Test web server running at => http://127.0.0.1:' + String(config.Sockets.TestingPort) + '/', 2)
   }
-})
+}) 
 
-function subDomainSeperator (request, response) {
-  switch (request.headers.host.split('.')[0]) {
-    case config.APISubDomain:
-      apiServer(request, response)
-      break
-    default:
-      mainServer(request, response)
-      break
-  }
-}
 function TESTsubDomainSeperator (request, response) {
   var uri = url.parse(request.url).pathname
   switch (uri.split('/')[1]) { // localhost vs 127.0.0.1 >.<

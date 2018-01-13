@@ -16,7 +16,9 @@
     "devDependencies": {},
     "dependencies": {
         "node-xsh": "^0.3.9",
-        "nosql": "^6.1.0"
+        "nosql": "^6.1.0",
+        "blakejs":"^1.1.0",
+        "request":"^2.83.0"
     },
     "scripts": { }
 }

@@ -1,12 +1,10 @@
 {
-    "Notes": "API: 0 = none, 1 = default, 2-inf = custom\n test_Price only goes for altcoins",
     "Testing": true,
     "FQDN": "localhost",
-    "APISubDomain": "api",
     "Sockets": {
-        "TestingPort": 8089,
+        "TestingPort": 8082,
         "SSLPort": 443,
-        "HTTPredirectPort": 8082
+        "HTTPredirectPort": 80
     },
     "XSH": {
         "walletpassphrase": "5i3IG5vLjp4a",
