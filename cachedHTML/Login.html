@@ -199,7 +199,7 @@
             // TODO: Maybe different username options
             // TODO: Maybe check the database?? (HARD)
                 // Display the username that will be used
-                document.getElementById("displaynameSignUpLabel").setAttribute("data-success", "Userame will be: " + $("#displaynameSignUpValue").val().toLowerCase().split(' ').join('_'));
+                document.getElementById("displaynameSignUpLabel").setAttribute("data-success", "Username will be: " + $("#displaynameSignUpValue").val().toLowerCase().split(' ').join('_'));
                 // Set the actual value in the extra info tab for __post action
                 document.getElementById("usernameSignUpValue").setAttribute("value",  $("#displaynameSignUpValue").val().toLowerCase().split(' ').join('_'));
             if ($("#displaynameSignUpValue").val().length > 4) {

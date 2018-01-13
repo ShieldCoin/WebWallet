@@ -265,6 +265,9 @@ function mainServer (request, response) {
 
   function DeliverFile () { // TODO organize, maybe seperate into functions...     *I ain't doing that!*         ...Fineeee I'll do it...    ...Good good *Laughing evily*...      \__(\/)_/ *table flip*
     if (CheckIP(ipadress)) return
+    if (uri === '/') {
+      util.Redirect(response, '/Login', {})
+    }
     if (uri.replace('.html', '').toLowerCase() === '/login') {
       util.getSession(sessionsDB, cookies['session']).then(resp => {
         if (resp.username !== '') {
@@ -309,7 +312,7 @@ function mainServer (request, response) {
                 DeliverPage(pages['Login'].content, 200) // TODO: change to real page + session
               } else if (request.post.type === 'signup') {
                 util.ValidateCaptcha(request).then(() => {
-                  if (request.post.username.length >= 5 && request.post.username.length <= 60 && request.post.password.length >= 8 && request.post.password.length >= 60 && request.password === request.confirmPasswordSignUp) {
+                  if (request.post.username.length >= 5 && request.post.username.length <= 60 && request.post.password.length >= 8 && request.post.password.length <= 60 && request.password === request.confirmPasswordSignUp) {
                     util.GetUser(usersDB, request.post.username.toLowerCase()).then(() => {
                       DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('That username already exists')), 200)
                     }).catch(() => { // Couldn't find a existing user with that username
@@ -337,8 +340,8 @@ function mainServer (request, response) {
                       })
                     })
                   } else { // Smartass trying to get past the javascript in the file itself (Lower than 4 char)
-                    DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Ha Ha, very clever! Now enter a valid username/password!')), 200)
-                    log("We've got a real smartass here!" + request.post.username + ' | ' + request.post.password, 1)
+                    DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Invalid Username')), 200)
+                    log("Invalid signup request: " + request.post.username + ' | ' + request.post.password, 1)
                   }
                 }).catch(err => {
                   DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Error, did the captcha fail?')), 200)
