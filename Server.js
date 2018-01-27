@@ -224,7 +224,7 @@ function mainServer (request, response) {
     return nHead
   }
 
-  switch (require('path').extname(uri)) { // All the sessionless shits
+  switch (require('path').extname(uri)) {
     case '.html':
     case '.png':
     case '.svg':
@@ -263,7 +263,7 @@ function mainServer (request, response) {
     response.end()
   }
 
-  function DeliverFile () { // TODO organize, maybe seperate into functions...     *I ain't doing that!*         ...Fineeee I'll do it...    ...Good good *Laughing evily*...      \__(\/)_/ *table flip*
+  function DeliverFile () { 
     if (CheckIP(ipadress)) return
     if (uri === '/') {
       util.Redirect(response, '/Login', {})
@@ -292,7 +292,7 @@ function mainServer (request, response) {
                   }).catch(err => {
                     log('Login failed || ERROR: ' + String(err), 1)
                     util.addLoginFailsSession(sessionsDB, cookies['session']).then(resp => {
-                      log('Session: ' + String(cookies['session']) + ' failed the login ' + String(resp) + 'x', 2) // TODO?: Make to an error?
+                      log('Session: ' + String(cookies['session']) + ' failed the login ' + String(resp) + 'x', 2)
                       if (resp >= 10) {
                         // TODO: Log brutes' ip
                         DeliverPage(util.AddJS(util.AddAntiBruteCaptcha(pages['Login'].content), util.gettoast('Username or Password Incorrect')), 200) // Captcha page if above 10 tries (maybe logged?)
@@ -302,8 +302,6 @@ function mainServer (request, response) {
                         DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Username or Password Incorrect')), 200) // Normal Login page if under 3 tries
                       }
                     })
-                    log('Trying something new here :P     = ' + String(request.connection.remoteAddress), 3) // IP tracking or the TODO: redundand brute-force logging
-                    log('Or maybe it would rather be this = ' + String(ipadress), 3) // Don't mind me
                   })
                 }).catch(err => {
                   DeliverPage(util.AddJS(util.AddAntiBruteCaptcha(pages['Login'].content), util.gettoast('Error, did your captcha fail?')), 200)
@@ -372,9 +370,6 @@ function mainServer (request, response) {
       })
       util.Redirect(response, '/Login', {})
     } else if (uri.replace('.html', '').toLowerCase() === '/dashboard') { // Show basic dashboard
-      // TODO: presonalize/api for getting data(client side js)
-      // Mine
-
       var stringy = ''
       util.getSession(sessionsDB, cookies['session']).then(resp => {
         if (resp.username === undefined || resp.username === '') {
