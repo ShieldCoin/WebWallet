@@ -26,7 +26,8 @@
         "request": "^2.83.0"
     },
     "scripts": {
-        "test": "standard --verbose | snazzy && jest --coverage"
+        "test": "standard --verbose | snazzy && jest --coverage",
+        "coveralls": "cat ./coverage/lcov.info | coveralls"
     },
     "standard": {
         "env": {
