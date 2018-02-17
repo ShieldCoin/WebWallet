@@ -49,7 +49,7 @@ function endsWith (str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1
 }
 
-String.prototype.replaceAll = function (search, replacement) {
+String.prototype.replaceAll = function (search, replacement) { // eslint-disable-line no-extend-native
   var target = this
   return target.replace(new RegExp(search, 'g'), replacement)
 }
@@ -134,8 +134,8 @@ setInterval(function () {
 var pages
 
 function SyncFiles () {
-  Promise.all(cache.SyncCache()).then(() => {
-    pages = cache.cachedFiles // TODO: find more memory efficient way
+  cache.SyncCache().then(() => {
+    pages = cache.getCachedFiles() // TODO: find more memory efficient way
     Object.keys(pages).forEach(function (val, i) {
       pages[val].content = pages[val].content
         .replace('{CAPTCHA}', util.GetCaptchaHTML())
@@ -182,7 +182,7 @@ function SSLoptions () {
   }
 }
 
-fs.exists(config.SSL.key, sslkey => {
+util.fileExists(config.SSL.key, sslkey => {
   if (sslkey && !config.Testing) {
     https.createServer(SSLoptions(), TESTsubDomainSeperator).listen(config.Sockets.SSLPort)
     http.createServer((request, response) => { // Redirect http requests
@@ -263,7 +263,7 @@ function mainServer (request, response) {
     response.end()
   }
 
-  function DeliverFile () { 
+  function DeliverFile () {
     if (CheckIP(ipadress)) return
     if (uri === '/') {
       util.Redirect(response, '/Login', {})
@@ -340,7 +340,7 @@ function mainServer (request, response) {
                     })
                   } else { // Smartass trying to get past the javascript in the file itself (Lower than 4 char)
                     DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Invalid Username')), 200)
-                    log("Invalid signup request: " + request.post.username + ' | ' + request.post.password, 1)
+                    log('Invalid signup request: ' + request.post.username + ' | ' + request.post.password, 1)
                   }
                 }).catch(err => {
                   DeliverPage(util.AddJS(pages['Login'].content, util.gettoast('Error, did the captcha fail?')), 200)
@@ -423,9 +423,9 @@ function mainServer (request, response) {
         response.write(file)
         response.end()
       })
-    } else if (util.IllegalAdressesCheck(require('path').join(__dirname, uri))) {
+    } else if (util.IllegalAddressesCheck(require('path').join(__dirname, uri))) {
       var filename = require('path').join(__dirname, uri)
-      fs.exists(filename, function (exists) { // Deliver files like a normal human being
+      util.fileExists(filename, function (exists) { // Deliver files like a normal human being
         if (!exists) {
           DeliverPage(getErrorPage(404), 404)
           return
