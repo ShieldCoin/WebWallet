@@ -11,14 +11,27 @@
     "author": "SHIELD <ShieldCoin@protonmail.com>",
     "main": "Server.js",
     "engines": {
-      "node": ">= 0.4.0"
+        "node": ">= 0.4.0"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "coveralls": "^3.0.0",
+        "jest": "^22.3.0",
+        "snazzy": "^7.0.0",
+        "standard": "^10.0.3"
+    },
     "dependencies": {
         "node-xsh": "^0.3.9",
         "nosql": "^6.1.0",
-        "blakejs":"^1.1.0",
-        "request":"^2.83.0"
+        "blakejs": "^1.1.0",
+        "request": "^2.83.0"
     },
-    "scripts": { }
+    "scripts": {
+        "test": "standard --verbose | snazzy && jest --coverage",
+        "coveralls": "cat ./coverage/lcov.info | coveralls"
+    },
+    "standard": {
+        "env": {
+            "jest": true
+        }
+    }
 }
